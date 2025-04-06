@@ -129,7 +129,8 @@ void AudioProcessor::processAudio(SourceAudioBuffer & sourceBuffer,
             activeChannels.push_back(channel.key);
         }
         auto data{ speakerBuffer.getArrayOfWritePointers(activeChannels) };
-        fillWithPinkNoise(data.data(), numSamples, narrow<int>(data.size()), *mAudioData.config->pinkNoiseGain);
+        fillWithPulsedPinkNoise(data.data(), numSamples, narrow<int>(data.size()), *mAudioData.config->pinkNoiseGain, pulseInterval, pulseLength);
+
     } else {
         // Process spat algorithm
         mSpatAlgorithm->process(*mAudioData.config, sourceBuffer, speakerBuffer, stereoBuffer, sourcePeaks, nullptr);
