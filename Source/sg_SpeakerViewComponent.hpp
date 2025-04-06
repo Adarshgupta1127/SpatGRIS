@@ -53,6 +53,8 @@ private:
     std::unique_ptr<juce::DynamicObject> mJsonSGInfos;
 
     bool mKillSpeakerViewProcess{};
+    bool mOrientSpeakersToCenter = true; // New flag to control orientation
+
 
 public:
     //==============================================================================
@@ -79,6 +81,9 @@ public:
     void setTriplets(juce::Array<Triplet> triplets) noexcept;
 
     void shouldKillSpeakerViewProcess(bool shouldKill);
+    void setOrientSpeakersToCenter(bool enabled) noexcept;
+    bool getOrientSpeakersToCenter() const noexcept { return mOrientSpeakersToCenter; }
+
 
     auto const & getLock() const noexcept { return mLock; }
     //==============================================================================
